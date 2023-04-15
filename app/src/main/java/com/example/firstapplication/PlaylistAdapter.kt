@@ -55,8 +55,4 @@ class PlaylistAdapter (private val context: Context): RecyclerView.Adapter<Playl
     fun getSelectedItemCount(selectedList: Array<Int>):Int{
         return selectedList.size
     }
-    private var onItemClickListener((Int)->Unit)? = null
-    fun setOnItemclickListener(listener: (Int) -> Unit){
-        setOnItemclickListener = listener
-    }
 }
