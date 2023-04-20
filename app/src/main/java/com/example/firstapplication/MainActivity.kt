@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding.playlistRV.adapter = adapter
 
         binding.addBtn.setOnClickListener {
-            //TODO Adapter로부터 selectedList 목록 출력력        }
+            //TODO Adapter로부터 selectedList 목록 출력        }
 
         }
     }

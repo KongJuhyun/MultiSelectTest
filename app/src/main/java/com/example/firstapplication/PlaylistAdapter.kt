@@ -3,6 +3,9 @@ package com.example.firstapplication
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +16,8 @@ class PlaylistAdapter (private val context: Context): RecyclerView.Adapter<Playl
     val selectedList = mutableListOf<Int>()
     var nowSelecting:Boolean = false
     class MyHolder(binding: PlaylistViewBinding) : RecyclerView.ViewHolder(binding.root){
-
+        val isChecked = binding.isChecked
+//        val isNotChecked = binding.isNotChecked
         val root = binding.root
     }
 
@@ -26,29 +30,32 @@ class PlaylistAdapter (private val context: Context): RecyclerView.Adapter<Playl
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int){
+        if(!nowSelecting) holder.isChecked.visibility = View.GONE
+        else holder.isChecked.visibility = View.VISIBLE
+//        holder.isNotChecked.visibility = View.GONE
+
         holder.root.setOnLongClickListener {
             holder.root.isSelected = true
-            holder.root.setBackgroundColor(Color.GRAY)
+            holder.isChecked.setImageResource(R.drawable.baseline_check_circle_24)
+            notifyDataSetChanged()
             nowSelecting = true
             selectedList.add(position)
-            Toast.makeText(holder.root.context, "Long Clicked", Toast.LENGTH_SHORT).show()
             return@setOnLongClickListener(true)
         }
 
         holder.root.setOnClickListener{
             if(nowSelecting){
                 if(!holder.root.isSelected){
-                    holder.root.setBackgroundColor(Color.GRAY)
                     holder.root.isSelected = true
+                    holder.isChecked.setImageResource(R.drawable.baseline_check_circle_24)
                     selectedList.add(position)
-                    Toast.makeText(holder.root.context,"Short Clicked",Toast.LENGTH_SHORT).show()
                 }
                 else{
                     holder.root.isSelected = false
-                    holder.root.setBackgroundColor(Color.WHITE)
-                    Toast.makeText(holder.root.context, "Canceled", Toast.LENGTH_SHORT).show()
+                    holder.isChecked.setImageResource(R.drawable.baseline_radio_button_unchecked_24)
+
                 }
-            } else Toast.makeText(holder.root.context,"not Selected",Toast.LENGTH_SHORT).show()
+            } //else Toast.makeText(holder.root.context,"not Selected",Toast.LENGTH_SHORT).show()
         }
     }
 

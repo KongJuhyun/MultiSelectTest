@@ -6,49 +6,85 @@
     app:cardCornerRadius="15dp"
     app:strokeWidth="2dp"
     app:strokeColor="@color/customBlue"
-    android:clickable="true"
     android:layout_margin="10dp">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/playlistImg"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
-        android:src="@drawable/baseline_music_video_24"
-        android:layout_marginStart="5dp"
-        android:layout_marginVertical="5dp"/>
-    <TextView
-        android:id="@+id/playlistName"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_toStartOf="@id/totalSongsPV"
-        android:layout_toEndOf="@id/playlistImg"
-        android:layout_gravity="center_vertical"
-        android:singleLine="true"
-        android:text="Playlist Name"
-        android:textSize="25dp"
-        android:layout_marginStart="80dp"
-        android:textColor="@color/black"/>
-    <TextView
-        android:id="@+id/totalSongsPV"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_toStartOf="@id/playlistDeleteBtn"
-        android:layout_toEndOf="@id/playlistName"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:singleLine="true"
-        android:text="0 songs"
-        android:textSize="17dp"
-        android:layout_marginStart="265dp"/>
-
-    <ImageButton
-        android:id="@+id/playlistDeleteBtn"
-        android:layout_width="50dp"
         android:layout_height="match_parent"
-        android:src="@drawable/baseline_delete_24"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Delete Song"/>
+        android:layout_margin="8dp">
 
+        <ImageView
+            android:id="@+id/isChecked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_radio_button_unchecked_24"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/playlistImg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/isNotChecked"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="3dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:src="@drawable/baseline_radio_button_unchecked_24"-->
+<!--            android:visibility="visible"/>-->
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/playlistImg"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
+            android:src="@drawable/baseline_music_video_24"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            app:layout_goneMarginLeft="5dp"
+
+            app:layout_constraintStart_toEndOf="@+id/isChecked"
+            app:layout_constraintEnd_toStartOf="@+id/playlistName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/playlistName"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:singleLine="true"
+            android:text="Playlist Name"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/playlistImg"
+            app:layout_constraintEnd_toStartOf="@+id/totalSongsPV"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/totalSongsPV"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_toEndOf="@id/playlistName"
+            android:singleLine="true"
+            android:text="0 songs"
+            android:textSize="17dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@id/playlistDeleteBtn"
+            app:layout_constraintStart_toEndOf="@+id/playlistName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/playlistDeleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_delete_24"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="Delete Song"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/totalSongsPV"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
